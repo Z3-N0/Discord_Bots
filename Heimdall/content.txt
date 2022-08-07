@@ -1,0 +1,58 @@
+#text message responses
+@client.event
+async def on_message(message):
+  
+  if message.author == client.user:
+    return
+
+  if 'mistletoe' in message.content.lower():
+    global OG
+    role = discord.utils.get(message.author.guild.roles, name = 'Viking')
+    if OG > 0:
+      OGrole = discord.utils.get(message.author.guild.roles, name = 'Hersir')
+      OG = OG - 1
+      await message.author.add_roles(OGrole)
+
+    remrole = discord.utils.get(message.author.guild.roles, name = 'Wanderer')
+    await message.author.add_roles(role)
+    
+    await message.author.remove_roles(remrole)
+    await message.channel.purge(limit = 1)
+    emb1 = discord.Embed(title = 'You may pass', description = message.author.mention, color = discord.Color.blue())
+    await message.channel.send(embed = emb1)
+    await asyncio.sleep(1)
+    await message.channel.purge(limit = 1)
+  else:
+    await asyncio.sleep(0.25)
+    await message.channel.purge(limit = 1)
+
+
+
+@client.event
+async def on_message(message): 
+  if message.author == client.user:
+    return
+
+
+  if '(╯°□°）╯︵ ┻━┻' in message.content:
+    channel = discord.utils.get(client.get_all_channels(),name='⭕┃og-verify')
+    emb3 = discord.Embed(title = 'ᴏɢ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ', color = discord.Color.blue())
+
+    emb3.add_field(name = "ꜱᴇɴᴅ 'OG'", value = "ᴛʜᴇ ꜰɪʀꜱᴛ 33 ᴍᴇꜱꜱᴀɢᴇꜱ ᴡɪʟʟ ʙᴇ ɢɪᴠᴇɴ ᴛʜᴇ ᴏɢ ʀᴏʟᴇ - ʜᴇʀꜱɪʀ", inline = False)
+
+    await client.get_channel(channel.id).send(embed = emb3)
+
+
+@client.event
+async def on_message(message):
+  
+  if message.author == client.user:
+    return
+
+  if 'og' in message.content.lower():
+    global OG
+    if OG > 0:
+      OGrole = discord.utils.get(message.author.guild.roles, name = 'Hersir')
+      OG = OG - 1
+      await message.author.add_roles(OGrole)
+      await message.add_reaction(emoji)
